@@ -18,3 +18,23 @@ model User {
   email String  @unique
   name  String?
 }
+
+// Candidate model for ATS (Applicant Tracking System)
+// Stores candidate information including personal details, professional background, and CV
+model Candidate {
+  id              Int       @id @default(autoincrement())
+  firstName       String    @db.VarChar(100)
+  lastName        String    @db.VarChar(100)
+  email           String    @unique @db.VarChar(255)
+  phone           String    @db.VarChar(50)
+  address         String?   @db.VarChar(500)
+  education       String?   @db.Text
+  workExperience  String?   @db.Text
+  cvFilePath      String?   @db.VarChar(500)
+  cvFileName      String?   @db.VarChar(255)
+  recruiterName   String?   @db.VarChar(100)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([email])
+}
